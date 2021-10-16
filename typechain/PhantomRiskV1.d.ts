@@ -53,7 +53,7 @@ interface PhantomRiskV1Interface extends ethers.utils.Interface {
     "resolveSiege(uint8)": FunctionFragment;
     "setDeploymentDone(uint8,uint8)": FunctionFragment;
     "setRegionTiers(tuple[5])": FunctionFragment;
-    "setSettings(uint256,uint256,uint256,uint256,uint256,uint256,uint256)": FunctionFragment;
+    "setSettings(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)": FunctionFragment;
     "settings()": FunctionFragment;
     "siegeOutcome(uint8)": FunctionFragment;
     "ticketRevenueRecipient()": FunctionFragment;
@@ -206,6 +206,7 @@ interface PhantomRiskV1Interface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "setSettings",
     values: [
+      BigNumberish,
       BigNumberish,
       BigNumberish,
       BigNumberish,
@@ -430,6 +431,7 @@ export type SettingsChangedEvent = TypedEvent<
       BigNumber,
       BigNumber,
       BigNumber,
+      BigNumber,
       BigNumber
     ] & {
       ticketPrice: BigNumber;
@@ -439,6 +441,7 @@ export type SettingsChangedEvent = TypedEvent<
       overwhelming: BigNumber;
       overwhelmingPenalty: BigNumber;
       plebForSoldier: BigNumber;
+      plebForWorker: BigNumber;
     },
     [
       BigNumber,
@@ -447,6 +450,7 @@ export type SettingsChangedEvent = TypedEvent<
       BigNumber,
       BigNumber,
       BigNumber,
+      BigNumber,
       BigNumber
     ] & {
       ticketPrice: BigNumber;
@@ -456,6 +460,7 @@ export type SettingsChangedEvent = TypedEvent<
       overwhelming: BigNumber;
       overwhelmingPenalty: BigNumber;
       plebForSoldier: BigNumber;
+      plebForWorker: BigNumber;
     }
   ] & {
     oldSettings: [
@@ -465,6 +470,7 @@ export type SettingsChangedEvent = TypedEvent<
       BigNumber,
       BigNumber,
       BigNumber,
+      BigNumber,
       BigNumber
     ] & {
       ticketPrice: BigNumber;
@@ -474,6 +480,7 @@ export type SettingsChangedEvent = TypedEvent<
       overwhelming: BigNumber;
       overwhelmingPenalty: BigNumber;
       plebForSoldier: BigNumber;
+      plebForWorker: BigNumber;
     };
     newSettings: [
       BigNumber,
@@ -482,6 +489,7 @@ export type SettingsChangedEvent = TypedEvent<
       BigNumber,
       BigNumber,
       BigNumber,
+      BigNumber,
       BigNumber
     ] & {
       ticketPrice: BigNumber;
@@ -491,6 +499,7 @@ export type SettingsChangedEvent = TypedEvent<
       overwhelming: BigNumber;
       overwhelmingPenalty: BigNumber;
       plebForSoldier: BigNumber;
+      plebForWorker: BigNumber;
     };
   }
 >;
@@ -826,6 +835,7 @@ export class PhantomRiskV1 extends BaseContract {
       _overwhelming: BigNumberish,
       _overwhelmingPenalty: BigNumberish,
       _plebForSoldier: BigNumberish,
+      _plebForWorker: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -833,6 +843,7 @@ export class PhantomRiskV1 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<
       [
+        BigNumber,
         BigNumber,
         BigNumber,
         BigNumber,
@@ -848,6 +859,7 @@ export class PhantomRiskV1 extends BaseContract {
         overwhelming: BigNumber;
         overwhelmingPenalty: BigNumber;
         plebForSoldier: BigNumber;
+        plebForWorker: BigNumber;
       }
     >;
 
@@ -1143,6 +1155,7 @@ export class PhantomRiskV1 extends BaseContract {
     _overwhelming: BigNumberish,
     _overwhelmingPenalty: BigNumberish,
     _plebForSoldier: BigNumberish,
+    _plebForWorker: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -1150,6 +1163,7 @@ export class PhantomRiskV1 extends BaseContract {
     overrides?: CallOverrides
   ): Promise<
     [
+      BigNumber,
       BigNumber,
       BigNumber,
       BigNumber,
@@ -1165,6 +1179,7 @@ export class PhantomRiskV1 extends BaseContract {
       overwhelming: BigNumber;
       overwhelmingPenalty: BigNumber;
       plebForSoldier: BigNumber;
+      plebForWorker: BigNumber;
     }
   >;
 
@@ -1455,6 +1470,7 @@ export class PhantomRiskV1 extends BaseContract {
       _overwhelming: BigNumberish,
       _overwhelmingPenalty: BigNumberish,
       _plebForSoldier: BigNumberish,
+      _plebForWorker: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1462,6 +1478,7 @@ export class PhantomRiskV1 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<
       [
+        BigNumber,
         BigNumber,
         BigNumber,
         BigNumber,
@@ -1477,6 +1494,7 @@ export class PhantomRiskV1 extends BaseContract {
         overwhelming: BigNumber;
         overwhelmingPenalty: BigNumber;
         plebForSoldier: BigNumber;
+        plebForWorker: BigNumber;
       }
     >;
 
@@ -1680,6 +1698,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1689,6 +1708,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         },
         [
           BigNumber,
@@ -1697,6 +1717,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1706,6 +1727,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         }
       ],
       {
@@ -1716,6 +1738,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1725,6 +1748,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         };
         newSettings: [
           BigNumber,
@@ -1733,6 +1757,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1742,6 +1767,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         };
       }
     >;
@@ -1758,6 +1784,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1767,6 +1794,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         },
         [
           BigNumber,
@@ -1775,6 +1803,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1784,6 +1813,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         }
       ],
       {
@@ -1794,6 +1824,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1803,6 +1834,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         };
         newSettings: [
           BigNumber,
@@ -1811,6 +1843,7 @@ export class PhantomRiskV1 extends BaseContract {
           BigNumber,
           BigNumber,
           BigNumber,
+          BigNumber,
           BigNumber
         ] & {
           ticketPrice: BigNumber;
@@ -1820,6 +1853,7 @@ export class PhantomRiskV1 extends BaseContract {
           overwhelming: BigNumber;
           overwhelmingPenalty: BigNumber;
           plebForSoldier: BigNumber;
+          plebForWorker: BigNumber;
         };
       }
     >;
@@ -2005,6 +2039,7 @@ export class PhantomRiskV1 extends BaseContract {
       _overwhelming: BigNumberish,
       _overwhelmingPenalty: BigNumberish,
       _plebForSoldier: BigNumberish,
+      _plebForWorker: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -2212,6 +2247,7 @@ export class PhantomRiskV1 extends BaseContract {
       _overwhelming: BigNumberish,
       _overwhelmingPenalty: BigNumberish,
       _plebForSoldier: BigNumberish,
+      _plebForWorker: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

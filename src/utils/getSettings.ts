@@ -14,6 +14,7 @@ export default async function getSettings(contracts: Contracts): Promise<Setting
     overwhelming: settings.overwhelming.toNumber(),
     overwhelmingPenalty: settings.overwhelmingPenalty.toNumber(),
     plebForSoldier: settings.plebForSoldier.toNumber(),
+    plebForWorker:settings.plebForWorker.toNumber(),
     regionTiers: regionTiers,
     layout: layout,
   };

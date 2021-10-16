@@ -20,7 +20,6 @@ interface RegionInfoProps {
   setModal: Dispatch<DualActionModalProps>;
   actions: Actions;
   regionFrom: number | null;
-  plebForSoldier: number | undefined;
   settings: Settings;
   blockTime: number;
 }
@@ -33,7 +32,6 @@ export default function RegionInfo({
   setModal,
   actions,
   regionFrom,
-  plebForSoldier,
   settings,
   blockTime,
 }: RegionInfoProps): JSX.Element {
@@ -48,6 +46,9 @@ export default function RegionInfo({
   );
 
   function updateWorkerToDeploy(value: string): void {
+    if (settings?.plebForWorker === undefined) {
+      return;
+    }
     if (value === "") {
       value = "0";
     }
@@ -55,7 +56,7 @@ export default function RegionInfo({
   }
 
   function updateSoldierForGarrison(value: string): void {
-    if (plebForSoldier === undefined) {
+    if (settings?.plebForSoldier === undefined) {
       return;
     }
     if (value === "") {
@@ -65,7 +66,7 @@ export default function RegionInfo({
   }
 
   function updateSoldierForAttack(value: string): void {
-    if (plebForSoldier === undefined) {
+    if (settings?.plebForSoldier === undefined) {
       return;
     }
     if (value === "") {
@@ -74,10 +75,8 @@ export default function RegionInfo({
     setSoldierForAttack(BigNumber.from(value));
   }
 
-  console.log(player);
-
   return (
-    <div className="pt-20 bg-gray-800 text-white min-h-screen">
+    <div className="pt-20 bg-gray-800 text-white min-h-full">
       <div className="flex flex-row justify-between">
         <div className="flex flex-row px-4 items-center">
           <h2 className="text-3xl font-bold">Region {region?.id}</h2>

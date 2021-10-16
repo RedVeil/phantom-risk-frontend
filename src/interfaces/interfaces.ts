@@ -78,6 +78,7 @@ export interface Settings {
   overwhelming: number;
   overwhelmingPenalty: number;
   plebForSoldier: number;
+  plebForWorker:number;
   regionTiers:RegionTier[]
   layout:Layout;
 }

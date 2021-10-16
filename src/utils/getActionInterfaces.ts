@@ -30,6 +30,10 @@ export default function getActionInterfaces(
   if (regionFrom === null) {
     return [];
   }
+  let totalWorker = region.totalWorker;
+  if(totalWorker.eq(BigNumber.from("0"))){
+    totalWorker = BigNumber.from("1")
+  }
   if (region.controlledBy === player.faction) {
     if (region.besieged) {
       if (region.siege?.rally) {
@@ -88,11 +92,11 @@ export default function getActionInterfaces(
               action: () =>
                 actions.deployWorker(region.id, actionValues.worker.value),
               content: `You will have ${region.worker
-                .add(actionValues.worker.value)
-                .toString()} earning  ${region.tierSettings.plebPerSec
-                .div(region.totalWorker)
-                .mul(region.worker.add(actionValues.worker.value))
-                .toString()} Pleb per second.`,
+                .add(actionValues.worker.value.div(settings.plebForWorker)) 
+                .toString()} Worker earning  ${region.tierSettings.plebPerSec
+                .div(totalWorker)
+                .mul(region.worker.add(actionValues.worker.value.div(settings.plebForWorker)))
+                .toString()} PLB per second.`,
             },
             {
               title: title["garrison"],
@@ -130,11 +134,11 @@ export default function getActionInterfaces(
               action: () =>
                 actions.deployWorker(region.id, actionValues.worker.value),
               content: `You will have ${region.worker
-                .add(actionValues.worker.value)
+                .add(actionValues.worker.value.div(settings.plebForWorker))
                 .toString()} earning  ${region.tierSettings.plebPerSec
-                .div(region.totalWorker)
-                .mul(region.worker.add(actionValues.worker.value))
-                .toString()} Pleb per second.`,
+                .div(totalWorker)
+                .mul(region.worker.add(actionValues.worker.value.div(settings.plebForWorker)))
+                .toString()} PLB per second.`,
             },
             {
               title: title["garrison"],
@@ -189,11 +193,11 @@ export default function getActionInterfaces(
           action: () =>
             actions.deployWorker(region.id, actionValues.worker.value),
           content: `You will have ${region.worker
-                .add(actionValues.worker.value)
+                .add(actionValues.worker.value.div(settings.plebForWorker))
                 .toString()} earning  ${region.tierSettings.plebPerSec
-                .div(region.totalWorker)
-                .mul(region.worker.add(actionValues.worker.value))
-                .toString()} Pleb per second.`,
+                .div(totalWorker)
+                .mul(region.worker.add(actionValues.worker.value.div(settings.plebForWorker)))
+                .toString()} PLB per second.`,
         },
         {
           title: title["garrison"],
@@ -298,11 +302,11 @@ export default function getActionInterfaces(
                 action: () =>
                   actions.deployWorker(region.id, actionValues.worker.value),
                 content: `You will have ${region.worker
-                .add(actionValues.worker.value)
+                .add(actionValues.worker.value.div(settings.plebForWorker))
                 .toString()} earning  ${region.tierSettings.plebPerSec
-                .div(region.totalWorker)
-                .mul(region.worker.add(actionValues.worker.value))
-                .toString()} Pleb per second.`,
+                .div(totalWorker)
+                .mul(region.worker.add(actionValues.worker.value.div(settings.plebForWorker)))
+                .toString()} PLB per second.`,
               },
               {
                 title: title["garrison"],
@@ -362,11 +366,11 @@ export default function getActionInterfaces(
                 action: () =>
                   actions.deployWorker(region.id, actionValues.worker.value),
                 content: `You will have ${region.worker
-                .add(actionValues.worker.value)
+                .add(actionValues.worker.value.div(settings.plebForWorker))
                 .toString()} earning  ${region.tierSettings.plebPerSec
-                .div(region.totalWorker)
-                .mul(region.worker.add(actionValues.worker.value))
-                .toString()} Pleb per second.`,
+                .div(totalWorker)
+                .mul(region.worker.add(actionValues.worker.value.div(settings.plebForWorker)))
+                .toString()} PLB per second.`,
               },
               {
                 title: title["garrison"],

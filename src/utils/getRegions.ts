@@ -1,4 +1,4 @@
-import { BigNumber, ethers } from "ethers";
+import { BigNumber } from "ethers";
 import { Contracts } from "../context/contracts";
 import {
   OverwhelmingArmy,
@@ -9,6 +9,26 @@ import {
   Siege,
 } from "../interfaces/interfaces";
 
+function isInteractable(
+  currentRegion: Region,
+  regions: Region[],
+  player: Player
+): boolean {
+  if (currentRegion.controlledBy === player.faction) {
+    return true;
+  }
+  const neighbors = regions.filter((region) =>
+    currentRegion.neighbors.includes(region.id)
+  );
+  const possibleNeighbors = neighbors.filter(
+    (region) => !region.besieged && region.controlledBy === player.faction
+  );
+  if (possibleNeighbors.length > 0) {
+    return true;
+  }
+  return false;
+}
+
 function getOverwhelmingArmy(
   attacker: BigNumber,
   defender: BigNumber,
@@ -18,10 +38,10 @@ function getOverwhelmingArmy(
   if (rally) {
     return OverwhelmingArmy.None;
   }
-  if (defender.div(overwhelming) >= attacker) {
+  if (defender.mul(100 - overwhelming) >= attacker.mul(100)) {
     return OverwhelmingArmy.Defender;
   }
-  if (attacker.div(overwhelming) >= defender) {
+  if (attacker.mul(100 - overwhelming) >= defender.mul(100)) {
     return OverwhelmingArmy.Attacker;
   }
   return OverwhelmingArmy.None;
@@ -30,18 +50,18 @@ function getOverwhelmingArmy(
 export default async function getRegions(
   contracts: Contracts,
   settings: Settings,
+  blockTime: number,
   player?: Player
 ): Promise<[Region[], number[][]]> {
   const regionIds = await contracts.risk.getRegionIds();
   let tableLayout: any = Array(settings.layout.rows).fill(0);
   tableLayout = tableLayout.map(
-    (x:number, i: number) => (tableLayout[i] = Array(settings.layout.columns).fill(0))
+    (x: number, i: number) =>
+      (tableLayout[i] = Array(settings.layout.columns).fill(0))
   );
-  const provider = ethers.getDefaultProvider();
-  const regions: Region[] = await Promise.all(
+  let regions: Region[] = await Promise.all(
     regionIds.map(async (id: number) => {
       const res = await contracts.risk.getRegion(id);
-      const block = await provider.getBlock("latest");
       const region: Region = {
         id: res.id_,
         column: res.column_,
@@ -67,13 +87,12 @@ export default async function getRegions(
           attacker: siege.attacker_,
           attackedAt: siege.attackedAt_.toNumber(),
           soldier: siege.soldier_,
-          rally:
-            siege.attackedAt_.toNumber() + settings.rallyTime < block.timestamp,
+          rally: siege.attackedAt_.toNumber() + settings.rallyTime < blockTime,
           overwhelm: getOverwhelmingArmy(
             siege.soldier_,
             region.garrison,
             settings.overwhelming,
-            siege.attackedAt_.toNumber() + settings.rallyTime < block.timestamp
+            siege.attackedAt_.toNumber() + settings.rallyTime < blockTime
           ),
         } as Siege;
       }
@@ -95,5 +114,13 @@ export default async function getRegions(
       return region;
     })
   );
+  if (player) {
+    regions = regions.map((region) => {
+      return {
+        ...region,
+        interactable: isInteractable(region, regions, player),
+      };
+    });
+  }
   return [regions, tableLayout];
 }
