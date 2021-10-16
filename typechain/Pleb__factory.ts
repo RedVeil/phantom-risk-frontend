@@ -175,7 +175,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -189,7 +188,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -203,7 +201,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -228,7 +225,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -253,7 +249,6 @@ const _abi = [
     ],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -273,7 +268,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -287,7 +281,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -306,7 +299,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -320,7 +312,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -345,7 +336,6 @@ const _abi = [
     ],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -365,7 +355,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -390,7 +379,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -410,7 +398,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -429,7 +416,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -454,7 +440,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -479,7 +464,6 @@ const _abi = [
     ],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -498,7 +482,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -512,7 +495,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -520,7 +502,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -534,7 +515,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -553,7 +533,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -572,7 +551,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -592,7 +570,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -606,7 +583,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -620,7 +596,6 @@ const _abi = [
     ],
     stateMutability: "view",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -645,7 +620,6 @@ const _abi = [
     ],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [
@@ -675,7 +649,6 @@ const _abi = [
     ],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
   {
     inputs: [],
@@ -683,7 +656,6 @@ const _abi = [
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    gas: "0x01ba8140",
   },
 ];
 
