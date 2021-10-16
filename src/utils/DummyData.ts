@@ -45,6 +45,7 @@ const dummySettings: Settings = {
   overwhelming: 3,
   overwhelmingPenalty: 2,
   plebForSoldier: 2,
+  plebForWorker:1,
   regionTiers: regionTiers as RegionTier[],
   layout: {
     rows: 2,
