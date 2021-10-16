@@ -65,7 +65,7 @@ export default function Game(): JSX.Element {
       clearInterval(updateInterval);
       clearInterval(timerInterval);
     };
-  }, []);
+  }, [account]);
 
   useEffect(() => {
     if (contracts?.risk && contracts?.pleb && account) {
@@ -335,7 +335,7 @@ export default function Game(): JSX.Element {
                   ) && (
                     <button
                       type="button"
-                      className="ml-4 px-6 py-1 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="ml-4 px-6 py-2 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onClick={(e) => approve()}
                     >
                       Approve PLB
