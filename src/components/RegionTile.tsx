@@ -50,7 +50,6 @@ export default function RegionTile({
                   className="w-4 h-4 flex-shrink-0 flex-grow-0 mb-1"
                 />
               )}
-              {}
               <div
                 className={`w-4 h-4 border border-gray-700 ${getFactionColor(
                   region.siege?.attacker as Faction

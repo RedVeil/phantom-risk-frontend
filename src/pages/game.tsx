@@ -37,7 +37,7 @@ export default function Game(): JSX.Element {
     DefaultDualActionModalProps
   );
   const [blockTime, setBlockTime] = useState<number>();
-  const [secToUpdate, setSecToUpdate] = useState<number>(60);
+  const [secToUpdate, setSecToUpdate] = useState<number>(30);
 
   useEffect(() => {
     const updateInterval = setInterval(() => {
@@ -50,14 +50,14 @@ export default function Game(): JSX.Element {
           (res) => setRegions(res[0])
         );
       }
-    }, 60000);
+    }, 30000);
 
     const timerInterval = setInterval(() => {
       if (contracts?.risk && contracts?.pleb && account) {
         setSecToUpdate((secToUpdate) =>
-          secToUpdate === 0 ? 60 : secToUpdate - 1
+          secToUpdate === 0 ? 30 : secToUpdate - 1
         );
-        setBlockTime(blockTime => blockTime+1)
+        setBlockTime((blockTime) => blockTime + 1);
       }
     }, 1000);
 
@@ -96,7 +96,11 @@ export default function Game(): JSX.Element {
   }
 
   async function claimPleb(regionTo: number): Promise<void> {
-    if (library === undefined || account === undefined || player === undefined) {
+    if (
+      library === undefined ||
+      account === undefined ||
+      player === undefined
+    ) {
       return;
     }
     toast.loading("Claiming Pleb...");
@@ -117,10 +121,20 @@ export default function Game(): JSX.Element {
           toast.error(err.data.message.split("'")[1]);
         }
       });
+    contracts.pleb.balanceOf(account).then((res) =>
+      setPlayer((player) => {
+        return {
+          address: player.address,
+          faction: player.faction,
+          plebAllowance: player.plebAllowance,
+          plebBalance: player.plebBalance,
+        };
+      })
+    );
     getRegions(contracts as Contracts, settings, blockTime, player).then(
       (res) => {
-        setRegions(res[0]);
-        setRegionLayout(res[1]);
+        setRegions((prevState) => res[0]);
+        setRegionLayout((prevState) => res[1]);
       }
     );
   }
@@ -129,7 +143,11 @@ export default function Game(): JSX.Element {
     regionTo: number,
     worker: BigNumber
   ): Promise<void> {
-    if (library === undefined || account === undefined || player === undefined) {
+    if (
+      library === undefined ||
+      account === undefined ||
+      player === undefined
+    ) {
       return;
     }
     toast.loading("Deploying Worker...");
@@ -150,10 +168,20 @@ export default function Game(): JSX.Element {
           toast.error(err.data.message.split("'")[1]);
         }
       });
+    contracts.pleb.balanceOf(account).then((res) =>
+      setPlayer((player) => {
+        return {
+          address: player.address,
+          faction: player.faction,
+          plebAllowance: player.plebAllowance,
+          plebBalance: player.plebBalance,
+        };
+      })
+    );
     getRegions(contracts as Contracts, settings, blockTime, player).then(
       (res) => {
-        setRegions(res[0]);
-        setRegionLayout(res[1]);
+        setRegions((prevState) => res[0]);
+        setRegionLayout((prevState) => res[1]);
       }
     );
   }
@@ -164,7 +192,11 @@ export default function Game(): JSX.Element {
     soldier: BigNumber,
     resolve: boolean
   ): Promise<void> {
-    if (library === undefined || account === undefined || player === undefined) {
+    if (
+      library === undefined ||
+      account === undefined ||
+      player === undefined
+    ) {
       return;
     }
     toast.loading("Deploying Soldier...");
@@ -185,10 +217,20 @@ export default function Game(): JSX.Element {
           toast.error(err.data.message.split("'")[1]);
         }
       });
+    contracts.pleb.balanceOf(account).then((res) =>
+      setPlayer((player) => {
+        return {
+          address: player.address,
+          faction: player.faction,
+          plebAllowance: player.plebAllowance,
+          plebBalance: player.plebBalance,
+        };
+      })
+    );
     getRegions(contracts as Contracts, settings, blockTime, player).then(
       (res) => {
-        setRegions(res[0]);
-        setRegionLayout(res[1]);
+        setRegions((prevState) => res[0]);
+        setRegionLayout((prevState) => res[1]);
       }
     );
   }
@@ -199,7 +241,11 @@ export default function Game(): JSX.Element {
     soldier: BigNumber,
     resolve: boolean
   ): Promise<void> {
-    if (library === undefined || account === undefined || player === undefined) {
+    if (
+      library === undefined ||
+      account === undefined ||
+      player === undefined
+    ) {
       return;
     }
     toast.loading("Attacking Region...");
@@ -220,10 +266,20 @@ export default function Game(): JSX.Element {
           toast.error(err.data.message.split("'")[1]);
         }
       });
+    contracts.pleb.balanceOf(account).then((res) =>
+      setPlayer((player) => {
+        return {
+          address: player.address,
+          faction: player.faction,
+          plebAllowance: player.plebAllowance,
+          plebBalance: player.plebBalance,
+        };
+      })
+    );
     getRegions(contracts as Contracts, settings, blockTime, player).then(
       (res) => {
-        setRegions(res[0]);
-        setRegionLayout(res[1]);
+        setRegions((prevState) => res[0]);
+        setRegionLayout((prevState) => res[1]);
       }
     );
   }
@@ -247,17 +303,23 @@ export default function Game(): JSX.Element {
           toast.error(err.data.message.split("'")[1]);
         }
       });
-    getPlayer(contracts, account).then((res) => res[1] && setPlayer(res[0]));
+    getPlayer(contracts, account).then(
+      (res) => res[1] && setPlayer((prevState) => res[0])
+    );
     getRegions(contracts as Contracts, settings, blockTime, player).then(
       (res) => {
-        setRegions(res[0]);
-        setRegionLayout(res[1]);
+        setRegions((prevState) => res[0]);
+        setRegionLayout((prevState) => res[1]);
       }
     );
   }
 
   async function approve(): Promise<void> {
-    if (library === undefined || account === undefined || player === undefined) {
+    if (
+      library === undefined ||
+      account === undefined ||
+      player === undefined
+    ) {
       return;
     }
     toast.loading("Approving Pleb...");
@@ -292,7 +354,6 @@ export default function Game(): JSX.Element {
       ),
     });
   }
-
 
   return (
     <div className="w-full overflow-hidden">
@@ -359,7 +420,7 @@ export default function Game(): JSX.Element {
                 {settings && <SettingsInfo settings={settings} />}
                 <a href="/">
                   <svg
-                    className="text-gray-500 ml-1 w-6 h-6 cursor-pointer hover:text-gray-300"
+                    className="text-gray-500 ml-2 w-6 h-6 cursor-pointer hover:text-gray-300"
                     aria-hidden="true"
                     focusable="false"
                     data-prefix="far"
@@ -386,7 +447,9 @@ export default function Game(): JSX.Element {
                     <tr>
                       <th></th>
                       {(regionLayout[0] as number[]).map((x, i) => (
-                        <th key={`column-${i}`} className="text-gray-600">{i}</th>
+                        <th key={`column-${i}`} className="text-gray-600">
+                          {i}
+                        </th>
                       ))}
                     </tr>
                     {regionLayout?.map((row: number[], i) => (
@@ -412,7 +475,7 @@ export default function Game(): JSX.Element {
                 </table>
                 <div className="absolute z-10 w-20 h-20 mr-20 mb-20 right-0 bottom-0">
                   <CircularProgressbar
-                    value={(100 / 60) * secToUpdate}
+                    value={(100 / 30) * secToUpdate}
                     text={`${secToUpdate}s`}
                   />
                 </div>
@@ -422,4 +485,4 @@ export default function Game(): JSX.Element {
       </div>
     </div>
   );
-};
+}
